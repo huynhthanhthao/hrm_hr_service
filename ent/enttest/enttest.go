@@ -9,9 +9,8 @@ import (
 	// required by schema hooks.
 	_ "github.com/huynhthanhthao/hrm_hr_service/ent/runtime"
 
-	"github.com/huynhthanhthao/hrm_hr_service/ent/migrate"
-
 	"entgo.io/ent/dialect/sql/schema"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/migrate"
 )
 
 type (

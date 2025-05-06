@@ -3,12 +3,12 @@
 package branch
 
 import (
-	"github.com/huynhthanhthao/hrm_hr_service/ent/predicate"
 	"time"
 
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"github.com/google/uuid"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/predicate"
 )
 
 // ID filters vertices based on their ID field.

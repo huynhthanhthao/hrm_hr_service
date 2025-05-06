@@ -4,13 +4,13 @@ package ent
 
 import (
 	"fmt"
-	"github.com/huynhthanhthao/hrm_hr_service/ent/company"
 	"strings"
 	"time"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"github.com/google/uuid"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/company"
 )
 
 // Company is the model entity for the Company schema.

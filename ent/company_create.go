@@ -6,13 +6,13 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/huynhthanhthao/hrm_hr_service/ent/branch"
-	"github.com/huynhthanhthao/hrm_hr_service/ent/company"
 	"time"
 
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/branch"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/company"
 )
 
 // CompanyCreate is the builder for creating a Company entity.

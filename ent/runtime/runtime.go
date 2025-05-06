@@ -2,7 +2,7 @@
 
 package runtime
 
-// The schema-stitching logic is generated in hrm/ent/runtime.go
+// The schema-stitching logic is generated in github.com/huynhthanhthao/hrm_hr_service/ent/runtime.go
 
 const (
 	Version = "v0.14.4"                                         // Version of ent codegen.

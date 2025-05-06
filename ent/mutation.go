@@ -6,15 +6,15 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/huynhthanhthao/hrm_hr_service/ent/branch"
-	"github.com/huynhthanhthao/hrm_hr_service/ent/company"
-	"github.com/huynhthanhthao/hrm_hr_service/ent/predicate"
 	"sync"
 	"time"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"github.com/google/uuid"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/branch"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/company"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/predicate"
 )
 
 const (

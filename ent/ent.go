@@ -6,14 +6,14 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/huynhthanhthao/hrm_hr_service/ent/branch"
-	"github.com/huynhthanhthao/hrm_hr_service/ent/company"
 	"reflect"
 	"sync"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/branch"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/company"
 )
 
 // ent aliases to avoid import conflicts in user's code.

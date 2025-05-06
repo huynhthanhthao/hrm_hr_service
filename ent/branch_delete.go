@@ -4,12 +4,12 @@ package ent
 
 import (
 	"context"
-	"github.com/huynhthanhthao/hrm_hr_service/ent/branch"
-	"github.com/huynhthanhthao/hrm_hr_service/ent/predicate"
 
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/branch"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/predicate"
 )
 
 // BranchDelete is the builder for deleting a Branch entity.

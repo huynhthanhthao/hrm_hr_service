@@ -3,12 +3,12 @@
 package ent
 
 import (
-	"github.com/huynhthanhthao/hrm_hr_service/ent/branch"
-	"github.com/huynhthanhthao/hrm_hr_service/ent/company"
-	"github.com/huynhthanhthao/hrm_hr_service/ent/schema"
 	"time"
 
 	"github.com/google/uuid"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/branch"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/company"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/schema"
 )
 
 // The init function reads all schema descriptors with runtime code

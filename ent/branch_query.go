@@ -5,9 +5,6 @@ package ent
 import (
 	"context"
 	"fmt"
-	"github.com/huynhthanhthao/hrm_hr_service/ent/branch"
-	"github.com/huynhthanhthao/hrm_hr_service/ent/company"
-	"github.com/huynhthanhthao/hrm_hr_service/ent/predicate"
 	"math"
 
 	"entgo.io/ent"
@@ -15,6 +12,9 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/google/uuid"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/branch"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/company"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/predicate"
 )
 
 // BranchQuery is the builder for querying Branch entities.

@@ -9,7 +9,7 @@ import "google/protobuf/timestamp.proto";
 
 import "google/protobuf/wrappers.proto";
 
-option go_package = "hrm/ent/proto/entpb";
+option go_package = "github.com/huynhthanhthao/hrm_hr_service/ent/proto/entpb";
 
 message Branch {
   bytes id = 1;
