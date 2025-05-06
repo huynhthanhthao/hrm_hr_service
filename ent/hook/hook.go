@@ -5,7 +5,7 @@ package hook
 import (
 	"context"
 	"fmt"
-	"hrm/ent"
+	"github.com/huynhthanhthao/hrm_hr_service/ent"
 )
 
 // The BranchFunc type is an adapter to allow the use of ordinary

@@ -3,7 +3,7 @@
 package company
 
 import (
-	"hrm/ent/predicate"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/predicate"
 	"time"
 
 	"entgo.io/ent/dialect/sql"

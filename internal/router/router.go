@@ -1,7 +1,7 @@
 package router
 
 import (
-	"hrm/ent"
+	"github.com/huynhthanhthao/hrm_hr_service/ent"
 
 	"github.com/gin-gonic/gin"
 )

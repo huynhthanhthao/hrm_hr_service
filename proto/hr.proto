@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package hr;
+
+option go_package = "./generate";
+
+message ValidateCompanyRequest {
+  int32 company_id = 1;
+}
+
+message ValidateCompanyResponse {
+  bool exists = 1;
+  string error = 2;
+}
+
+service ValidateCompanyService {
+  rpc ValidateCompany (ValidateCompanyRequest) returns (ValidateCompanyResponse);
+}

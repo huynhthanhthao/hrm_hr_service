@@ -6,8 +6,8 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"hrm/ent/branch"
-	"hrm/ent/company"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/branch"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/company"
 	"time"
 
 	"entgo.io/ent/dialect/sql/sqlgraph"

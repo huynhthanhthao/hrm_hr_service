@@ -9,10 +9,10 @@ import (
 	"log"
 	"reflect"
 
-	"hrm/ent/migrate"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/migrate"
 
-	"hrm/ent/branch"
-	"hrm/ent/company"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/branch"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/company"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect"

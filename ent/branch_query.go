@@ -5,9 +5,9 @@ package ent
 import (
 	"context"
 	"fmt"
-	"hrm/ent/branch"
-	"hrm/ent/company"
-	"hrm/ent/predicate"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/branch"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/company"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/predicate"
 	"math"
 
 	"entgo.io/ent"

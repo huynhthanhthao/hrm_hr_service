@@ -4,7 +4,7 @@ package ent
 
 import (
 	"fmt"
-	"hrm/ent/company"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/company"
 	"strings"
 	"time"
 

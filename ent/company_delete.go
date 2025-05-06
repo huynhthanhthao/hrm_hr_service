@@ -4,8 +4,8 @@ package ent
 
 import (
 	"context"
-	"hrm/ent/company"
-	"hrm/ent/predicate"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/company"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/predicate"
 
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"

@@ -3,9 +3,9 @@
 package ent
 
 import (
-	"hrm/ent/branch"
-	"hrm/ent/company"
-	"hrm/ent/schema"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/branch"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/company"
+	"github.com/huynhthanhthao/hrm_hr_service/ent/schema"
 	"time"
 
 	"github.com/google/uuid"

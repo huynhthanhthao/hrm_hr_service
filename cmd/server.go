@@ -3,11 +3,14 @@ package main
 import (
 	"context"
 	"fmt"
-	"hrm/ent"
-	"hrm/internal/router"
 	"log"
 	"net"
 	"os"
+
+	"github.com/huynhthanhthao/hrm_hr_service/ent"
+	"github.com/huynhthanhthao/hrm_hr_service/generate"
+	hrGrpcServer "github.com/huynhthanhthao/hrm_hr_service/internal/grpc"
+	"github.com/huynhthanhthao/hrm_hr_service/internal/router"
 
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
@@ -80,16 +83,22 @@ func runMigration(client *ent.Client) {
 
 // Start gRPC server
 func startGRPCServer(client *ent.Client) {
+	// Khởi tạo gRPC server
 	grpcServer := grpc.NewServer()
-	// grpcSvc := entpb.NewUserService(client)
-	// entpb.RegisterUserServiceServer(grpcServer, grpcSvc)
 
+	// Tạo instance của HRServer
+	hrServer := hrGrpcServer.NewHRServer(client)
+
+	generate.RegisterValidateCompanyServiceServer(grpcServer, hrServer)
+
+	// Thiết lập listener
 	lis, err := net.Listen("tcp", grpcPort)
 	if err != nil {
 		logger.Fatalf("❌ failed to listen for gRPC: %v", err)
 	}
 
 	logger.Printf("✅ gRPC server listening on %s", grpcPort)
+	// Khởi động server
 	if err := grpcServer.Serve(lis); err != nil {
 		logger.Fatalf("❌ gRPC server stopped: %v", err)
 	}
