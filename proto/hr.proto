@@ -5,7 +5,7 @@ package hr;
 option go_package = "./generate";
 
 message ValidateCompanyRequest {
-  int32 company_id = 1;
+  string company_id = 1;
 }
 
 message ValidateCompanyResponse {

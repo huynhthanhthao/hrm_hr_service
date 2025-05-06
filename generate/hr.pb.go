@@ -23,7 +23,7 @@ const (
 
 type ValidateCompanyRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CompanyId     int32                  `protobuf:"varint,1,opt,name=company_id,json=companyId,proto3" json:"company_id,omitempty"`
+	CompanyId     string                 `protobuf:"bytes,1,opt,name=company_id,json=companyId,proto3" json:"company_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -58,11 +58,11 @@ func (*ValidateCompanyRequest) Descriptor() ([]byte, []int) {
 	return file_proto_hr_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ValidateCompanyRequest) GetCompanyId() int32 {
+func (x *ValidateCompanyRequest) GetCompanyId() string {
 	if x != nil {
 		return x.CompanyId
 	}
-	return 0
+	return ""
 }
 
 type ValidateCompanyResponse struct {
@@ -124,7 +124,7 @@ const file_proto_hr_proto_rawDesc = "" +
 	"\x0eproto/hr.proto\x12\x02hr\"7\n" +
 	"\x16ValidateCompanyRequest\x12\x1d\n" +
 	"\n" +
-	"company_id\x18\x01 \x01(\x05R\tcompanyId\"G\n" +
+	"company_id\x18\x01 \x01(\tR\tcompanyId\"G\n" +
 	"\x17ValidateCompanyResponse\x12\x16\n" +
 	"\x06exists\x18\x01 \x01(\bR\x06exists\x12\x14\n" +
 	"\x05error\x18\x02 \x01(\tR\x05error2d\n" +
