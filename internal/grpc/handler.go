@@ -3,6 +3,7 @@ package hrGrpcServer
 import (
 	"context"
 	"fmt"
+
 	"github.com/huynhthanhthao/hrm_hr_service/ent"
 	"github.com/huynhthanhthao/hrm_hr_service/ent/company"
 	"github.com/huynhthanhthao/hrm_hr_service/generate"
