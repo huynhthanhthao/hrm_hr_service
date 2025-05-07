@@ -74,20 +74,6 @@ func (bc *BranchCreate) SetNillableUpdatedAt(t *time.Time) *BranchCreate {
 	return bc
 }
 
-// SetCompanyID sets the "company_id" field.
-func (bc *BranchCreate) SetCompanyID(u uuid.UUID) *BranchCreate {
-	bc.mutation.SetCompanyID(u)
-	return bc
-}
-
-// SetNillableCompanyID sets the "company_id" field if the given value is not nil.
-func (bc *BranchCreate) SetNillableCompanyID(u *uuid.UUID) *BranchCreate {
-	if u != nil {
-		bc.SetCompanyID(*u)
-	}
-	return bc
-}
-
 // SetID sets the "id" field.
 func (bc *BranchCreate) SetID(u uuid.UUID) *BranchCreate {
 	bc.mutation.SetID(u)
@@ -98,6 +84,20 @@ func (bc *BranchCreate) SetID(u uuid.UUID) *BranchCreate {
 func (bc *BranchCreate) SetNillableID(u *uuid.UUID) *BranchCreate {
 	if u != nil {
 		bc.SetID(*u)
+	}
+	return bc
+}
+
+// SetCompanyID sets the "company" edge to the Company entity by ID.
+func (bc *BranchCreate) SetCompanyID(id uuid.UUID) *BranchCreate {
+	bc.mutation.SetCompanyID(id)
+	return bc
+}
+
+// SetNillableCompanyID sets the "company" edge to the Company entity by ID if the given value is not nil.
+func (bc *BranchCreate) SetNillableCompanyID(id *uuid.UUID) *BranchCreate {
+	if id != nil {
+		bc = bc.SetCompanyID(*id)
 	}
 	return bc
 }
@@ -269,7 +269,7 @@ func (bc *BranchCreate) createSpec() (*Branch, *sqlgraph.CreateSpec) {
 		for _, k := range nodes {
 			edge.Target.Nodes = append(edge.Target.Nodes, k)
 		}
-		_node.CompanyID = nodes[0]
+		_node.company_branches = &nodes[0]
 		_spec.Edges = append(_spec.Edges, edge)
 	}
 	return _node, _spec

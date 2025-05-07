@@ -38,11 +38,6 @@ func toProtoBranch(e *ent.Branch) (*Branch, error) {
 	v.Address = address
 	code := e.Code
 	v.Code = code
-	company, err := e.CompanyID.MarshalBinary()
-	if err != nil {
-		return nil, err
-	}
-	v.CompanyId = company
 	contact_info := e.ContactInfo
 	v.ContactInfo = contact_info
 	created_at := timestamppb.New(e.CreatedAt)
@@ -152,13 +147,6 @@ func (svc *BranchService) Update(ctx context.Context, req *UpdateBranchRequest) 
 	m.SetAddress(branchAddress)
 	branchCode := branch.GetCode()
 	m.SetCode(branchCode)
-	if branch.GetCompanyId() != nil {
-		var branchCompanyID uuid.UUID
-		if err := (&branchCompanyID).UnmarshalBinary(branch.GetCompanyId().GetValue()); err != nil {
-			return nil, status.Errorf(codes.InvalidArgument, "invalid argument: %s", err)
-		}
-		m.SetCompanyID(branchCompanyID)
-	}
 	branchContactInfo := branch.GetContactInfo()
 	m.SetContactInfo(branchContactInfo)
 	branchCreatedAt := runtime.ExtractTime(branch.GetCreatedAt())
@@ -172,7 +160,7 @@ func (svc *BranchService) Update(ctx context.Context, req *UpdateBranchRequest) 
 		if err := (&branchCompany).UnmarshalBinary(branch.GetCompany().GetId()); err != nil {
 			return nil, status.Errorf(codes.InvalidArgument, "invalid argument: %s", err)
 		}
-		m.SetCompanyID(branchCompany)
+		m.Mutation().SetCompanyID(branchCompany)
 	}
 
 	res, err := m.Save(ctx)
@@ -314,13 +302,6 @@ func (svc *BranchService) createBuilder(branch *Branch) (*ent.BranchCreate, erro
 	m.SetAddress(branchAddress)
 	branchCode := branch.GetCode()
 	m.SetCode(branchCode)
-	if branch.GetCompanyId() != nil {
-		var branchCompanyID uuid.UUID
-		if err := (&branchCompanyID).UnmarshalBinary(branch.GetCompanyId().GetValue()); err != nil {
-			return nil, status.Errorf(codes.InvalidArgument, "invalid argument: %s", err)
-		}
-		m.SetCompanyID(branchCompanyID)
-	}
 	branchContactInfo := branch.GetContactInfo()
 	m.SetContactInfo(branchContactInfo)
 	branchCreatedAt := runtime.ExtractTime(branch.GetCreatedAt())

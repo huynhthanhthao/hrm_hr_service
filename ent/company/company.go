@@ -33,7 +33,7 @@ const (
 	// It exists in this package in order to avoid circular dependency with the "branch" package.
 	BranchesInverseTable = "branches"
 	// BranchesColumn is the table column denoting the branches relation/edge.
-	BranchesColumn = "company_id"
+	BranchesColumn = "company_branches"
 )
 
 // Columns holds all SQL columns for company fields.

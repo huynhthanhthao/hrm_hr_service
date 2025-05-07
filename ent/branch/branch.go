@@ -27,8 +27,6 @@ const (
 	FieldCreatedAt = "created_at"
 	// FieldUpdatedAt holds the string denoting the updated_at field in the database.
 	FieldUpdatedAt = "updated_at"
-	// FieldCompanyID holds the string denoting the company_id field in the database.
-	FieldCompanyID = "company_id"
 	// EdgeCompany holds the string denoting the company edge name in mutations.
 	EdgeCompany = "company"
 	// Table holds the table name of the branch in the database.
@@ -39,7 +37,7 @@ const (
 	// It exists in this package in order to avoid circular dependency with the "company" package.
 	CompanyInverseTable = "companies"
 	// CompanyColumn is the table column denoting the company relation/edge.
-	CompanyColumn = "company_id"
+	CompanyColumn = "company_branches"
 )
 
 // Columns holds all SQL columns for branch fields.
@@ -51,13 +49,23 @@ var Columns = []string{
 	FieldContactInfo,
 	FieldCreatedAt,
 	FieldUpdatedAt,
-	FieldCompanyID,
+}
+
+// ForeignKeys holds the SQL foreign-keys that are owned by the "branches"
+// table and are not defined as standalone fields in the schema.
+var ForeignKeys = []string{
+	"company_branches",
 }
 
 // ValidColumn reports if the column name is valid (part of the table columns).
 func ValidColumn(column string) bool {
 	for i := range Columns {
 		if column == Columns[i] {
+			return true
+		}
+	}
+	for i := range ForeignKeys {
+		if column == ForeignKeys[i] {
 			return true
 		}
 	}
@@ -119,11 +127,6 @@ func ByCreatedAt(opts ...sql.OrderTermOption) OrderOption {
 // ByUpdatedAt orders the results by the updated_at field.
 func ByUpdatedAt(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldUpdatedAt, opts...).ToFunc()
-}
-
-// ByCompanyID orders the results by the company_id field.
-func ByCompanyID(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldCompanyID, opts...).ToFunc()
 }
 
 // ByCompanyField orders the results by company field.

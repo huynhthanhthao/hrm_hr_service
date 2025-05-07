@@ -7,8 +7,6 @@ import "google/protobuf/empty.proto";
 
 import "google/protobuf/timestamp.proto";
 
-import "google/protobuf/wrappers.proto";
-
 option go_package = "github.com/huynhthanhthao/hrm_hr_service/ent/proto/entpb";
 
 message Branch {
@@ -25,8 +23,6 @@ message Branch {
   google.protobuf.Timestamp created_at = 6;
 
   google.protobuf.Timestamp updated_at = 7;
-
-  google.protobuf.BytesValue company_id = 9;
 
   Company company = 8;
 }

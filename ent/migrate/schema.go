@@ -17,7 +17,7 @@ var (
 		{Name: "contact_info", Type: field.TypeString},
 		{Name: "created_at", Type: field.TypeTime},
 		{Name: "updated_at", Type: field.TypeTime},
-		{Name: "company_id", Type: field.TypeUUID, Nullable: true},
+		{Name: "company_branches", Type: field.TypeUUID, Nullable: true},
 	}
 	// BranchesTable holds the schema information for the "branches" table.
 	BranchesTable = &schema.Table{

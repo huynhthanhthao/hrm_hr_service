@@ -45,11 +45,6 @@ func (Branch) Fields() []ent.Field {
 			Annotations(
 				entproto.Field(7),
 			),
-		field.UUID("company_id", uuid.New()).
-			Optional().
-			Annotations(
-				entproto.Field(9),
-			),
 	}
 }
 
@@ -57,8 +52,8 @@ func (Branch) Edges() []ent.Edge {
 	return []ent.Edge{
 		edge.From("company", Company.Type).
 			Ref("branches").
-			Field("company_id").
 			Unique().
+			Immutable().
 			Annotations(entproto.Field(8)),
 	}
 }

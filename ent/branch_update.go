@@ -11,9 +11,7 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/google/uuid"
 	"github.com/huynhthanhthao/hrm_hr_service/ent/branch"
-	"github.com/huynhthanhthao/hrm_hr_service/ent/company"
 	"github.com/huynhthanhthao/hrm_hr_service/ent/predicate"
 )
 
@@ -106,40 +104,9 @@ func (bu *BranchUpdate) SetUpdatedAt(t time.Time) *BranchUpdate {
 	return bu
 }
 
-// SetCompanyID sets the "company_id" field.
-func (bu *BranchUpdate) SetCompanyID(u uuid.UUID) *BranchUpdate {
-	bu.mutation.SetCompanyID(u)
-	return bu
-}
-
-// SetNillableCompanyID sets the "company_id" field if the given value is not nil.
-func (bu *BranchUpdate) SetNillableCompanyID(u *uuid.UUID) *BranchUpdate {
-	if u != nil {
-		bu.SetCompanyID(*u)
-	}
-	return bu
-}
-
-// ClearCompanyID clears the value of the "company_id" field.
-func (bu *BranchUpdate) ClearCompanyID() *BranchUpdate {
-	bu.mutation.ClearCompanyID()
-	return bu
-}
-
-// SetCompany sets the "company" edge to the Company entity.
-func (bu *BranchUpdate) SetCompany(c *Company) *BranchUpdate {
-	return bu.SetCompanyID(c.ID)
-}
-
 // Mutation returns the BranchMutation object of the builder.
 func (bu *BranchUpdate) Mutation() *BranchMutation {
 	return bu.mutation
-}
-
-// ClearCompany clears the "company" edge to the Company entity.
-func (bu *BranchUpdate) ClearCompany() *BranchUpdate {
-	bu.mutation.ClearCompany()
-	return bu
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
@@ -232,35 +199,6 @@ func (bu *BranchUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if value, ok := bu.mutation.UpdatedAt(); ok {
 		_spec.SetField(branch.FieldUpdatedAt, field.TypeTime, value)
-	}
-	if bu.mutation.CompanyCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
-			Inverse: true,
-			Table:   branch.CompanyTable,
-			Columns: []string{branch.CompanyColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(company.FieldID, field.TypeUUID),
-			},
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := bu.mutation.CompanyIDs(); len(nodes) > 0 {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
-			Inverse: true,
-			Table:   branch.CompanyTable,
-			Columns: []string{branch.CompanyColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(company.FieldID, field.TypeUUID),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
 	if n, err = sqlgraph.UpdateNodes(ctx, bu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
@@ -358,40 +296,9 @@ func (buo *BranchUpdateOne) SetUpdatedAt(t time.Time) *BranchUpdateOne {
 	return buo
 }
 
-// SetCompanyID sets the "company_id" field.
-func (buo *BranchUpdateOne) SetCompanyID(u uuid.UUID) *BranchUpdateOne {
-	buo.mutation.SetCompanyID(u)
-	return buo
-}
-
-// SetNillableCompanyID sets the "company_id" field if the given value is not nil.
-func (buo *BranchUpdateOne) SetNillableCompanyID(u *uuid.UUID) *BranchUpdateOne {
-	if u != nil {
-		buo.SetCompanyID(*u)
-	}
-	return buo
-}
-
-// ClearCompanyID clears the value of the "company_id" field.
-func (buo *BranchUpdateOne) ClearCompanyID() *BranchUpdateOne {
-	buo.mutation.ClearCompanyID()
-	return buo
-}
-
-// SetCompany sets the "company" edge to the Company entity.
-func (buo *BranchUpdateOne) SetCompany(c *Company) *BranchUpdateOne {
-	return buo.SetCompanyID(c.ID)
-}
-
 // Mutation returns the BranchMutation object of the builder.
 func (buo *BranchUpdateOne) Mutation() *BranchMutation {
 	return buo.mutation
-}
-
-// ClearCompany clears the "company" edge to the Company entity.
-func (buo *BranchUpdateOne) ClearCompany() *BranchUpdateOne {
-	buo.mutation.ClearCompany()
-	return buo
 }
 
 // Where appends a list predicates to the BranchUpdate builder.
@@ -514,35 +421,6 @@ func (buo *BranchUpdateOne) sqlSave(ctx context.Context) (_node *Branch, err err
 	}
 	if value, ok := buo.mutation.UpdatedAt(); ok {
 		_spec.SetField(branch.FieldUpdatedAt, field.TypeTime, value)
-	}
-	if buo.mutation.CompanyCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
-			Inverse: true,
-			Table:   branch.CompanyTable,
-			Columns: []string{branch.CompanyColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(company.FieldID, field.TypeUUID),
-			},
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := buo.mutation.CompanyIDs(); len(nodes) > 0 {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
-			Inverse: true,
-			Table:   branch.CompanyTable,
-			Columns: []string{branch.CompanyColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(company.FieldID, field.TypeUUID),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
 	_node = &Branch{config: buo.config}
 	_spec.Assign = _node.assignValues

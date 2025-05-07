@@ -13,7 +13,6 @@ import (
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
-	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -231,7 +230,6 @@ type Branch struct {
 	ContactInfo   string                 `protobuf:"bytes,5,opt,name=contact_info,json=contactInfo,proto3" json:"contact_info,omitempty"`
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	CompanyId     *wrapperspb.BytesValue `protobuf:"bytes,9,opt,name=company_id,json=companyId,proto3" json:"company_id,omitempty"`
 	Company       *Company               `protobuf:"bytes,8,opt,name=company,proto3" json:"company,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -312,13 +310,6 @@ func (x *Branch) GetCreatedAt() *timestamppb.Timestamp {
 func (x *Branch) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdatedAt
-	}
-	return nil
-}
-
-func (x *Branch) GetCompanyId() *wrapperspb.BytesValue {
-	if x != nil {
-		return x.CompanyId
 	}
 	return nil
 }
@@ -1186,7 +1177,7 @@ var File_entpb_entpb_proto protoreflect.FileDescriptor
 
 const file_entpb_entpb_proto_rawDesc = "" +
 	"\n" +
-	"\x11entpb/entpb.proto\x12\x05entpb\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\"\xd9\x02\n" +
+	"\x11entpb/entpb.proto\x12\x05entpb\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9d\x02\n" +
 	"\x06Branch\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\fR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -1196,9 +1187,7 @@ const file_entpb_entpb_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12:\n" +
-	"\n" +
-	"company_id\x18\t \x01(\v2\x1b.google.protobuf.BytesValueR\tcompanyId\x12(\n" +
+	"updated_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12(\n" +
 	"\acompany\x18\b \x01(\v2\x0e.entpb.CompanyR\acompany\"<\n" +
 	"\x13CreateBranchRequest\x12%\n" +
 	"\x06branch\x18\x01 \x01(\v2\r.entpb.BranchR\x06branch\"\x90\x01\n" +
@@ -1321,60 +1310,58 @@ var file_entpb_entpb_proto_goTypes = []any{
 	(*BatchCreateCompaniesRequest)(nil),  // 20: entpb.BatchCreateCompaniesRequest
 	(*BatchCreateCompaniesResponse)(nil), // 21: entpb.BatchCreateCompaniesResponse
 	(*timestamppb.Timestamp)(nil),        // 22: google.protobuf.Timestamp
-	(*wrapperspb.BytesValue)(nil),        // 23: google.protobuf.BytesValue
-	(*emptypb.Empty)(nil),                // 24: google.protobuf.Empty
+	(*emptypb.Empty)(nil),                // 23: google.protobuf.Empty
 }
 var file_entpb_entpb_proto_depIdxs = []int32{
 	22, // 0: entpb.Branch.created_at:type_name -> google.protobuf.Timestamp
 	22, // 1: entpb.Branch.updated_at:type_name -> google.protobuf.Timestamp
-	23, // 2: entpb.Branch.company_id:type_name -> google.protobuf.BytesValue
-	13, // 3: entpb.Branch.company:type_name -> entpb.Company
-	4,  // 4: entpb.CreateBranchRequest.branch:type_name -> entpb.Branch
-	0,  // 5: entpb.GetBranchRequest.view:type_name -> entpb.GetBranchRequest.View
-	4,  // 6: entpb.UpdateBranchRequest.branch:type_name -> entpb.Branch
-	1,  // 7: entpb.ListBranchRequest.view:type_name -> entpb.ListBranchRequest.View
-	4,  // 8: entpb.ListBranchResponse.branch_list:type_name -> entpb.Branch
-	5,  // 9: entpb.BatchCreateBranchesRequest.requests:type_name -> entpb.CreateBranchRequest
-	4,  // 10: entpb.BatchCreateBranchesResponse.branches:type_name -> entpb.Branch
-	22, // 11: entpb.Company.created_at:type_name -> google.protobuf.Timestamp
-	22, // 12: entpb.Company.updated_at:type_name -> google.protobuf.Timestamp
-	4,  // 13: entpb.Company.branches:type_name -> entpb.Branch
-	13, // 14: entpb.CreateCompanyRequest.company:type_name -> entpb.Company
-	2,  // 15: entpb.GetCompanyRequest.view:type_name -> entpb.GetCompanyRequest.View
-	13, // 16: entpb.UpdateCompanyRequest.company:type_name -> entpb.Company
-	3,  // 17: entpb.ListCompanyRequest.view:type_name -> entpb.ListCompanyRequest.View
-	13, // 18: entpb.ListCompanyResponse.company_list:type_name -> entpb.Company
-	14, // 19: entpb.BatchCreateCompaniesRequest.requests:type_name -> entpb.CreateCompanyRequest
-	13, // 20: entpb.BatchCreateCompaniesResponse.companies:type_name -> entpb.Company
-	5,  // 21: entpb.BranchService.Create:input_type -> entpb.CreateBranchRequest
-	6,  // 22: entpb.BranchService.Get:input_type -> entpb.GetBranchRequest
-	7,  // 23: entpb.BranchService.Update:input_type -> entpb.UpdateBranchRequest
-	8,  // 24: entpb.BranchService.Delete:input_type -> entpb.DeleteBranchRequest
-	9,  // 25: entpb.BranchService.List:input_type -> entpb.ListBranchRequest
-	11, // 26: entpb.BranchService.BatchCreate:input_type -> entpb.BatchCreateBranchesRequest
-	14, // 27: entpb.CompanyService.Create:input_type -> entpb.CreateCompanyRequest
-	15, // 28: entpb.CompanyService.Get:input_type -> entpb.GetCompanyRequest
-	16, // 29: entpb.CompanyService.Update:input_type -> entpb.UpdateCompanyRequest
-	17, // 30: entpb.CompanyService.Delete:input_type -> entpb.DeleteCompanyRequest
-	18, // 31: entpb.CompanyService.List:input_type -> entpb.ListCompanyRequest
-	20, // 32: entpb.CompanyService.BatchCreate:input_type -> entpb.BatchCreateCompaniesRequest
-	4,  // 33: entpb.BranchService.Create:output_type -> entpb.Branch
-	4,  // 34: entpb.BranchService.Get:output_type -> entpb.Branch
-	4,  // 35: entpb.BranchService.Update:output_type -> entpb.Branch
-	24, // 36: entpb.BranchService.Delete:output_type -> google.protobuf.Empty
-	10, // 37: entpb.BranchService.List:output_type -> entpb.ListBranchResponse
-	12, // 38: entpb.BranchService.BatchCreate:output_type -> entpb.BatchCreateBranchesResponse
-	13, // 39: entpb.CompanyService.Create:output_type -> entpb.Company
-	13, // 40: entpb.CompanyService.Get:output_type -> entpb.Company
-	13, // 41: entpb.CompanyService.Update:output_type -> entpb.Company
-	24, // 42: entpb.CompanyService.Delete:output_type -> google.protobuf.Empty
-	19, // 43: entpb.CompanyService.List:output_type -> entpb.ListCompanyResponse
-	21, // 44: entpb.CompanyService.BatchCreate:output_type -> entpb.BatchCreateCompaniesResponse
-	33, // [33:45] is the sub-list for method output_type
-	21, // [21:33] is the sub-list for method input_type
-	21, // [21:21] is the sub-list for extension type_name
-	21, // [21:21] is the sub-list for extension extendee
-	0,  // [0:21] is the sub-list for field type_name
+	13, // 2: entpb.Branch.company:type_name -> entpb.Company
+	4,  // 3: entpb.CreateBranchRequest.branch:type_name -> entpb.Branch
+	0,  // 4: entpb.GetBranchRequest.view:type_name -> entpb.GetBranchRequest.View
+	4,  // 5: entpb.UpdateBranchRequest.branch:type_name -> entpb.Branch
+	1,  // 6: entpb.ListBranchRequest.view:type_name -> entpb.ListBranchRequest.View
+	4,  // 7: entpb.ListBranchResponse.branch_list:type_name -> entpb.Branch
+	5,  // 8: entpb.BatchCreateBranchesRequest.requests:type_name -> entpb.CreateBranchRequest
+	4,  // 9: entpb.BatchCreateBranchesResponse.branches:type_name -> entpb.Branch
+	22, // 10: entpb.Company.created_at:type_name -> google.protobuf.Timestamp
+	22, // 11: entpb.Company.updated_at:type_name -> google.protobuf.Timestamp
+	4,  // 12: entpb.Company.branches:type_name -> entpb.Branch
+	13, // 13: entpb.CreateCompanyRequest.company:type_name -> entpb.Company
+	2,  // 14: entpb.GetCompanyRequest.view:type_name -> entpb.GetCompanyRequest.View
+	13, // 15: entpb.UpdateCompanyRequest.company:type_name -> entpb.Company
+	3,  // 16: entpb.ListCompanyRequest.view:type_name -> entpb.ListCompanyRequest.View
+	13, // 17: entpb.ListCompanyResponse.company_list:type_name -> entpb.Company
+	14, // 18: entpb.BatchCreateCompaniesRequest.requests:type_name -> entpb.CreateCompanyRequest
+	13, // 19: entpb.BatchCreateCompaniesResponse.companies:type_name -> entpb.Company
+	5,  // 20: entpb.BranchService.Create:input_type -> entpb.CreateBranchRequest
+	6,  // 21: entpb.BranchService.Get:input_type -> entpb.GetBranchRequest
+	7,  // 22: entpb.BranchService.Update:input_type -> entpb.UpdateBranchRequest
+	8,  // 23: entpb.BranchService.Delete:input_type -> entpb.DeleteBranchRequest
+	9,  // 24: entpb.BranchService.List:input_type -> entpb.ListBranchRequest
+	11, // 25: entpb.BranchService.BatchCreate:input_type -> entpb.BatchCreateBranchesRequest
+	14, // 26: entpb.CompanyService.Create:input_type -> entpb.CreateCompanyRequest
+	15, // 27: entpb.CompanyService.Get:input_type -> entpb.GetCompanyRequest
+	16, // 28: entpb.CompanyService.Update:input_type -> entpb.UpdateCompanyRequest
+	17, // 29: entpb.CompanyService.Delete:input_type -> entpb.DeleteCompanyRequest
+	18, // 30: entpb.CompanyService.List:input_type -> entpb.ListCompanyRequest
+	20, // 31: entpb.CompanyService.BatchCreate:input_type -> entpb.BatchCreateCompaniesRequest
+	4,  // 32: entpb.BranchService.Create:output_type -> entpb.Branch
+	4,  // 33: entpb.BranchService.Get:output_type -> entpb.Branch
+	4,  // 34: entpb.BranchService.Update:output_type -> entpb.Branch
+	23, // 35: entpb.BranchService.Delete:output_type -> google.protobuf.Empty
+	10, // 36: entpb.BranchService.List:output_type -> entpb.ListBranchResponse
+	12, // 37: entpb.BranchService.BatchCreate:output_type -> entpb.BatchCreateBranchesResponse
+	13, // 38: entpb.CompanyService.Create:output_type -> entpb.Company
+	13, // 39: entpb.CompanyService.Get:output_type -> entpb.Company
+	13, // 40: entpb.CompanyService.Update:output_type -> entpb.Company
+	23, // 41: entpb.CompanyService.Delete:output_type -> google.protobuf.Empty
+	19, // 42: entpb.CompanyService.List:output_type -> entpb.ListCompanyResponse
+	21, // 43: entpb.CompanyService.BatchCreate:output_type -> entpb.BatchCreateCompaniesResponse
+	32, // [32:44] is the sub-list for method output_type
+	20, // [20:32] is the sub-list for method input_type
+	20, // [20:20] is the sub-list for extension type_name
+	20, // [20:20] is the sub-list for extension extendee
+	0,  // [0:20] is the sub-list for field type_name
 }
 
 func init() { file_entpb_entpb_proto_init() }

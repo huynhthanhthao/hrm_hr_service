@@ -86,11 +86,6 @@ func UpdatedAt(v time.Time) predicate.Branch {
 	return predicate.Branch(sql.FieldEQ(FieldUpdatedAt, v))
 }
 
-// CompanyID applies equality check predicate on the "company_id" field. It's identical to CompanyIDEQ.
-func CompanyID(v uuid.UUID) predicate.Branch {
-	return predicate.Branch(sql.FieldEQ(FieldCompanyID, v))
-}
-
 // NameEQ applies the EQ predicate on the "name" field.
 func NameEQ(v string) predicate.Branch {
 	return predicate.Branch(sql.FieldEQ(FieldName, v))
@@ -429,36 +424,6 @@ func UpdatedAtLT(v time.Time) predicate.Branch {
 // UpdatedAtLTE applies the LTE predicate on the "updated_at" field.
 func UpdatedAtLTE(v time.Time) predicate.Branch {
 	return predicate.Branch(sql.FieldLTE(FieldUpdatedAt, v))
-}
-
-// CompanyIDEQ applies the EQ predicate on the "company_id" field.
-func CompanyIDEQ(v uuid.UUID) predicate.Branch {
-	return predicate.Branch(sql.FieldEQ(FieldCompanyID, v))
-}
-
-// CompanyIDNEQ applies the NEQ predicate on the "company_id" field.
-func CompanyIDNEQ(v uuid.UUID) predicate.Branch {
-	return predicate.Branch(sql.FieldNEQ(FieldCompanyID, v))
-}
-
-// CompanyIDIn applies the In predicate on the "company_id" field.
-func CompanyIDIn(vs ...uuid.UUID) predicate.Branch {
-	return predicate.Branch(sql.FieldIn(FieldCompanyID, vs...))
-}
-
-// CompanyIDNotIn applies the NotIn predicate on the "company_id" field.
-func CompanyIDNotIn(vs ...uuid.UUID) predicate.Branch {
-	return predicate.Branch(sql.FieldNotIn(FieldCompanyID, vs...))
-}
-
-// CompanyIDIsNil applies the IsNil predicate on the "company_id" field.
-func CompanyIDIsNil() predicate.Branch {
-	return predicate.Branch(sql.FieldIsNull(FieldCompanyID))
-}
-
-// CompanyIDNotNil applies the NotNil predicate on the "company_id" field.
-func CompanyIDNotNil() predicate.Branch {
-	return predicate.Branch(sql.FieldNotNull(FieldCompanyID))
 }
 
 // HasCompany applies the HasEdge predicate on the "company" edge.

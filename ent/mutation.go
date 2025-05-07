@@ -370,64 +370,27 @@ func (m *BranchMutation) ResetUpdatedAt() {
 	m.updated_at = nil
 }
 
-// SetCompanyID sets the "company_id" field.
-func (m *BranchMutation) SetCompanyID(u uuid.UUID) {
-	m.company = &u
-}
-
-// CompanyID returns the value of the "company_id" field in the mutation.
-func (m *BranchMutation) CompanyID() (r uuid.UUID, exists bool) {
-	v := m.company
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldCompanyID returns the old "company_id" field's value of the Branch entity.
-// If the Branch object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *BranchMutation) OldCompanyID(ctx context.Context) (v uuid.UUID, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldCompanyID is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldCompanyID requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldCompanyID: %w", err)
-	}
-	return oldValue.CompanyID, nil
-}
-
-// ClearCompanyID clears the value of the "company_id" field.
-func (m *BranchMutation) ClearCompanyID() {
-	m.company = nil
-	m.clearedFields[branch.FieldCompanyID] = struct{}{}
-}
-
-// CompanyIDCleared returns if the "company_id" field was cleared in this mutation.
-func (m *BranchMutation) CompanyIDCleared() bool {
-	_, ok := m.clearedFields[branch.FieldCompanyID]
-	return ok
-}
-
-// ResetCompanyID resets all changes to the "company_id" field.
-func (m *BranchMutation) ResetCompanyID() {
-	m.company = nil
-	delete(m.clearedFields, branch.FieldCompanyID)
+// SetCompanyID sets the "company" edge to the Company entity by id.
+func (m *BranchMutation) SetCompanyID(id uuid.UUID) {
+	m.company = &id
 }
 
 // ClearCompany clears the "company" edge to the Company entity.
 func (m *BranchMutation) ClearCompany() {
 	m.clearedcompany = true
-	m.clearedFields[branch.FieldCompanyID] = struct{}{}
 }
 
 // CompanyCleared reports if the "company" edge to the Company entity was cleared.
 func (m *BranchMutation) CompanyCleared() bool {
-	return m.CompanyIDCleared() || m.clearedcompany
+	return m.clearedcompany
+}
+
+// CompanyID returns the "company" edge ID in the mutation.
+func (m *BranchMutation) CompanyID() (id uuid.UUID, exists bool) {
+	if m.company != nil {
+		return *m.company, true
+	}
+	return
 }
 
 // CompanyIDs returns the "company" edge IDs in the mutation.
@@ -480,7 +443,7 @@ func (m *BranchMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *BranchMutation) Fields() []string {
-	fields := make([]string, 0, 7)
+	fields := make([]string, 0, 6)
 	if m.name != nil {
 		fields = append(fields, branch.FieldName)
 	}
@@ -498,9 +461,6 @@ func (m *BranchMutation) Fields() []string {
 	}
 	if m.updated_at != nil {
 		fields = append(fields, branch.FieldUpdatedAt)
-	}
-	if m.company != nil {
-		fields = append(fields, branch.FieldCompanyID)
 	}
 	return fields
 }
@@ -522,8 +482,6 @@ func (m *BranchMutation) Field(name string) (ent.Value, bool) {
 		return m.CreatedAt()
 	case branch.FieldUpdatedAt:
 		return m.UpdatedAt()
-	case branch.FieldCompanyID:
-		return m.CompanyID()
 	}
 	return nil, false
 }
@@ -545,8 +503,6 @@ func (m *BranchMutation) OldField(ctx context.Context, name string) (ent.Value, 
 		return m.OldCreatedAt(ctx)
 	case branch.FieldUpdatedAt:
 		return m.OldUpdatedAt(ctx)
-	case branch.FieldCompanyID:
-		return m.OldCompanyID(ctx)
 	}
 	return nil, fmt.Errorf("unknown Branch field %s", name)
 }
@@ -598,13 +554,6 @@ func (m *BranchMutation) SetField(name string, value ent.Value) error {
 		}
 		m.SetUpdatedAt(v)
 		return nil
-	case branch.FieldCompanyID:
-		v, ok := value.(uuid.UUID)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetCompanyID(v)
-		return nil
 	}
 	return fmt.Errorf("unknown Branch field %s", name)
 }
@@ -634,11 +583,7 @@ func (m *BranchMutation) AddField(name string, value ent.Value) error {
 // ClearedFields returns all nullable fields that were cleared during this
 // mutation.
 func (m *BranchMutation) ClearedFields() []string {
-	var fields []string
-	if m.FieldCleared(branch.FieldCompanyID) {
-		fields = append(fields, branch.FieldCompanyID)
-	}
-	return fields
+	return nil
 }
 
 // FieldCleared returns a boolean indicating if a field with the given name was
@@ -651,11 +596,6 @@ func (m *BranchMutation) FieldCleared(name string) bool {
 // ClearField clears the value of the field with the given name. It returns an
 // error if the field is not defined in the schema.
 func (m *BranchMutation) ClearField(name string) error {
-	switch name {
-	case branch.FieldCompanyID:
-		m.ClearCompanyID()
-		return nil
-	}
 	return fmt.Errorf("unknown Branch nullable field %s", name)
 }
 
@@ -680,9 +620,6 @@ func (m *BranchMutation) ResetField(name string) error {
 		return nil
 	case branch.FieldUpdatedAt:
 		m.ResetUpdatedAt()
-		return nil
-	case branch.FieldCompanyID:
-		m.ResetCompanyID()
 		return nil
 	}
 	return fmt.Errorf("unknown Branch field %s", name)
